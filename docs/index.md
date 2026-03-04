@@ -1,14 +1,8 @@
 # Watts Vision+ Homey App
 
-Unofficial Homey integration for the **Watts Vision+ heating system**.
+Unofficial Homey integration for the Watts Vision+ heating system.
 
-Homey App Store (test channel):
+Homey test store page:
 https://homey.app/a/com.watts.vision/test/
 
-## Features
-
-- View room temperature
-- Adjust thermostat setpoint
-- Switch heating modes
-- Start Boost mode
-- Use Homey Flows for automation
+This project connects Homey to the Watts Vision+ cloud so thermostats can be controlled from Homey and used in flows.

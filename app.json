@@ -1,0 +1,685 @@
+{
+  "id": "com.watts.vision",
+  "version": "1.3.6",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "name": {
+    "en": "Watts Vision+"
+  },
+  "description": {
+    "en": "Control your Watts Vision+ smart heating system from Homey"
+  },
+  "category": "climate",
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png"
+  },
+  "author": {
+    "name": "idleprocess-zero",
+    "email": "idleprocess.zero@gmail.com"
+  },
+  "capabilities": {
+    "watts_mode": {
+      "type": "enum",
+      "title": {
+        "en": "Heating Mode"
+      },
+      "values": [
+        {
+          "id": "program",
+          "title": {
+            "en": "Auto / Schedule"
+          }
+        },
+        {
+          "id": "comfort",
+          "title": {
+            "en": "Comfort"
+          }
+        },
+        {
+          "id": "eco",
+          "title": {
+            "en": "Reduced / ECO"
+          }
+        },
+        {
+          "id": "boost",
+          "title": {
+            "en": "Boost"
+          }
+        },
+        {
+          "id": "off",
+          "title": {
+            "en": "Anti-freeze"
+          }
+        }
+      ],
+      "getable": true,
+      "setable": true,
+      "insights": true,
+      "uiComponent": "picker"
+    },
+    "watts_boost_remaining": {
+      "type": "number",
+      "title": {
+        "en": "Boost Remaining"
+      },
+      "units": {
+        "en": "min"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "min": 0,
+      "max": 1440,
+      "step": 1,
+      "uiComponent": "sensor",
+      "icon": "/assets/capability_icons/boost.svg"
+    },
+    "watts_last_error": {
+      "type": "string",
+      "title": {
+        "en": "Device Status"
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "icon": "/assets/capability_icons/error.svg"
+    }
+  },
+  "drivers": [
+    {
+      "id": "watts-thermostat",
+      "name": {
+        "en": "Watts Vision+ Thermostat"
+      },
+      "class": "thermostat",
+      "capabilities": [
+        "measure_temperature",
+        "target_temperature",
+        "watts_mode",
+        "alarm_heat",
+        "watts_boost_remaining",
+        "watts_last_error"
+      ],
+      "capabilitiesOptions": {
+        "target_temperature": {
+          "min": 5,
+          "max": 30,
+          "step": 0.5
+        },
+        "watts_last_error": {
+          "title": {
+            "en": "Device Status"
+          }
+        },
+        "alarm_heat": {
+          "title": {
+            "en": "Actively Heating"
+          },
+          "insightsTitleTrue": {
+            "en": "Heating started"
+          },
+          "insightsTitleFalse": {
+            "en": "Heating stopped"
+          }
+        },
+        "watts_boost_remaining": {
+          "title": {
+            "en": "Boost Remaining"
+          }
+        }
+      },
+      "connectivity": [
+        "cloud"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "images": {
+        "small": "/drivers/watts-thermostat/assets/images/small.png",
+        "large": "/drivers/watts-thermostat/assets/images/large.png",
+        "xlarge": "/drivers/watts-thermostat/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "navigation": {
+            "next": "list_devices"
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "id": "poll_interval",
+          "type": "number",
+          "label": {
+            "en": "Poll interval (seconds)"
+          },
+          "value": 30,
+          "attr": {
+            "min": 10,
+            "max": 300
+          }
+        },
+        {
+          "id": "eco_temperature",
+          "type": "number",
+          "label": {
+            "en": "Default Eco temperature (\u00b0C)"
+          },
+          "value": 16,
+          "attr": {
+            "min": 5,
+            "max": 25,
+            "step": 0.5
+          }
+        },
+        {
+          "id": "boost_temperature",
+          "type": "number",
+          "label": {
+            "en": "Default Boost temperature (\u00b0C)"
+          },
+          "hint": {
+            "en": "Temperature used when Boost is selected from the device tile"
+          },
+          "value": 21,
+          "attr": {
+            "min": 5,
+            "max": 30,
+            "step": 0.5
+          }
+        },
+        {
+          "id": "boost_duration",
+          "type": "dropdown",
+          "label": {
+            "en": "Default Boost duration"
+          },
+          "hint": {
+            "en": "Duration used when Boost is selected from the device tile"
+          },
+          "value": "60",
+          "values": [
+            {
+              "id": "30",
+              "label": {
+                "en": "30 minutes"
+              }
+            },
+            {
+              "id": "60",
+              "label": {
+                "en": "1 hour"
+              }
+            },
+            {
+              "id": "90",
+              "label": {
+                "en": "1.5 hours"
+              }
+            },
+            {
+              "id": "120",
+              "label": {
+                "en": "2 hours"
+              }
+            },
+            {
+              "id": "240",
+              "label": {
+                "en": "4 hours"
+              }
+            },
+            {
+              "id": "480",
+              "label": {
+                "en": "8 hours"
+              }
+            },
+            {
+              "id": "720",
+              "label": {
+                "en": "12 hours"
+              }
+            },
+            {
+              "id": "1440",
+              "label": {
+                "en": "24 hours"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "flow": {
+    "actions": [
+      {
+        "id": "set_boost",
+        "title": {
+          "en": "Start boost heating"
+        },
+        "args": [
+          {
+            "name": "temperature",
+            "type": "number",
+            "title": {
+              "en": "Temperature (\u00b0C)"
+            },
+            "min": 5,
+            "max": 30,
+            "step": 0.5
+          },
+          {
+            "name": "duration_minutes",
+            "type": "dropdown",
+            "title": {
+              "en": "Duration"
+            },
+            "values": [
+              {
+                "id": "30",
+                "label": {
+                  "en": "30 minutes"
+                }
+              },
+              {
+                "id": "60",
+                "label": {
+                  "en": "1 hour"
+                }
+              },
+              {
+                "id": "90",
+                "label": {
+                  "en": "1.5 hours"
+                }
+              },
+              {
+                "id": "120",
+                "label": {
+                  "en": "2 hours"
+                }
+              },
+              {
+                "id": "240",
+                "label": {
+                  "en": "4 hours"
+                }
+              },
+              {
+                "id": "480",
+                "label": {
+                  "en": "8 hours"
+                }
+              },
+              {
+                "id": "720",
+                "label": {
+                  "en": "12 hours"
+                }
+              },
+              {
+                "id": "1440",
+                "label": {
+                  "en": "24 hours"
+                }
+              }
+            ]
+          },
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=watts-thermostat"
+          }
+        ],
+        "titleFormatted": {
+          "en": "Start boost heating at [[temperature]]\u00b0C for [[duration_minutes]] minutes"
+        }
+      },
+      {
+        "id": "stop_boost",
+        "title": {
+          "en": "Stop boost \u2014 return to schedule"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=watts-thermostat"
+          }
+        ]
+      },
+      {
+        "id": "set_thermostat_mode",
+        "title": {
+          "en": "Set heating mode"
+        },
+        "args": [
+          {
+            "name": "mode",
+            "type": "dropdown",
+            "title": {
+              "en": "Mode"
+            },
+            "values": [
+              {
+                "id": "program",
+                "label": {
+                  "en": "Auto / Schedule"
+                }
+              },
+              {
+                "id": "comfort",
+                "label": {
+                  "en": "Comfort"
+                }
+              },
+              {
+                "id": "eco",
+                "label": {
+                  "en": "Reduced / ECO"
+                }
+              },
+              {
+                "id": "off",
+                "label": {
+                  "en": "Anti-freeze"
+                }
+              }
+            ]
+          },
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=watts-thermostat"
+          }
+        ],
+        "titleFormatted": {
+          "en": "Set heating mode to [[mode]]"
+        }
+      },
+      {
+        "id": "clear_errors",
+        "title": {
+          "en": "Clear error log"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=watts-thermostat"
+          }
+        ]
+      },
+      {
+        "id": "set_all_eco",
+        "title": {
+          "en": "Set all thermostats to Reduced / ECO"
+        },
+        "args": []
+      },
+      {
+        "id": "set_all_antifreeze",
+        "title": {
+          "en": "Set all thermostats to Anti-freeze"
+        },
+        "args": []
+      },
+      {
+        "id": "set_all_schedule",
+        "title": {
+          "en": "Set all thermostats to Auto / Schedule"
+        },
+        "args": []
+      }
+    ],
+    "conditions": [
+      {
+        "id": "is_heating",
+        "title": {
+          "en": "Is !{{|not}} actively heating"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=watts-thermostat"
+          }
+        ]
+      },
+      {
+        "id": "is_boost_active",
+        "title": {
+          "en": "Boost mode !{{is|is not}} active"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=watts-thermostat"
+          }
+        ]
+      },
+      {
+        "id": "has_error",
+        "title": {
+          "en": "Device !{{has|has no}} active error"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=watts-thermostat"
+          }
+        ]
+      }
+    ],
+    "triggers": [
+      {
+        "id": "mode_changed",
+        "title": {
+          "en": "Heating mode changed"
+        },
+        "tokens": [
+          {
+            "name": "mode",
+            "type": "string",
+            "title": {
+              "en": "New mode"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=watts-thermostat"
+          }
+        ]
+      },
+      {
+        "id": "error_occurred",
+        "title": {
+          "en": "An error occurred"
+        },
+        "tokens": [
+          {
+            "name": "error",
+            "type": "string",
+            "title": {
+              "en": "Error message"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=watts-thermostat"
+          }
+        ]
+      },
+      {
+        "id": "temperature_dropped_below",
+        "title": {
+          "en": "Temperature dropped below"
+        },
+        "tokens": [
+          {
+            "name": "temperature",
+            "type": "number",
+            "title": {
+              "en": "Temperature (\u00b0C)"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "temperature",
+            "type": "number",
+            "title": {
+              "en": "Temperature (\u00b0C)"
+            },
+            "min": 0,
+            "max": 30,
+            "step": 0.5
+          },
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=watts-thermostat"
+          }
+        ]
+      },
+      {
+        "id": "temperature_risen_above",
+        "title": {
+          "en": "Temperature rose above"
+        },
+        "tokens": [
+          {
+            "name": "temperature",
+            "type": "number",
+            "title": {
+              "en": "Temperature (\u00b0C)"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "temperature",
+            "type": "number",
+            "title": {
+              "en": "Temperature (\u00b0C)"
+            },
+            "min": 0,
+            "max": 35,
+            "step": 0.5
+          },
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=watts-thermostat"
+          }
+        ]
+      },
+      {
+        "id": "target_temperature_changed",
+        "title": {
+          "en": "Target temperature changed"
+        },
+        "tokens": [
+          {
+            "name": "temperature",
+            "type": "number",
+            "title": {
+              "en": "New target (\u00b0C)"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=watts-thermostat"
+          }
+        ]
+      },
+      {
+        "id": "boost_started",
+        "title": {
+          "en": "Boost started"
+        },
+        "tokens": [
+          {
+            "name": "temperature",
+            "type": "number",
+            "title": {
+              "en": "Boost temperature (\u00b0C)"
+            }
+          },
+          {
+            "name": "duration",
+            "type": "number",
+            "title": {
+              "en": "Duration (min)"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=watts-thermostat"
+          }
+        ]
+      },
+      {
+        "id": "boost_ended",
+        "title": {
+          "en": "Boost ended"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=watts-thermostat"
+          }
+        ]
+      },
+      {
+        "id": "error_cleared",
+        "title": {
+          "en": "Device error cleared"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=watts-thermostat"
+          }
+        ]
+      }
+    ]
+  },
+  "brandColor": "#1F4E79"
+}

@@ -1,0 +1,19 @@
+{
+  "settings": {
+    "poll_interval": "Poll-interval (seconden)",
+    "eco_temperature": "Standaard Eco-temperatuur (°C)",
+    "boost_temperature": "Standaard Boost-temperatuur (°C)",
+    "boost_temperature_hint": "Temperatuur gebruikt wanneer Boost geselecteerd wordt via de apparaattegel",
+    "boost_duration": "Standaard Boost-duur",
+    "boost_duration_hint": "Duur gebruikt wanneer Boost geselecteerd wordt via de apparaattegel"
+  },
+  "pair": {
+    "login_credentials": {
+      "username": "E-mailadres",
+      "password": "Wachtwoord"
+    }
+  },
+  "error": {
+    "no_devices_found": "Geen thermostaat-apparaten gevonden. Zorg dat uw gateway online is en zones zijn geconfigureerd in de Watts Vision+ app."
+  }
+}
