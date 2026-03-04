@@ -24,9 +24,11 @@ Developed by **idleprocess-zero**  •  v1.3.1.17
 
 - Homey Pro (SDK 3, Homey >= 5.0.0)
 - A Watts Vision+ account (smarthome.wattselectronics.com)
-- A Watts Vision+ gateway (BT-CT03-RF or BT-ST03-RF) connected to the internet
+- A Watts Vision+ gateway (BT-CT02-RF) connected to the internet
 - At least one thermostat zone paired to the gateway in the Watts app
 
+Working on adding support for the newer verions
+- A Watts Vision+ gateway (BT-CT03-RF or BT-ST33-RF) connected to the internet
 ---
 
 ## Pairing
