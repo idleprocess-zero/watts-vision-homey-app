@@ -1,0 +1,16 @@
+site_name: Watts Vision+ Homey App
+site_description: Unofficial Homey integration for Watts Vision+ heating systems
+site_author: Idleprocess Zero
+repo_url: https://github.com/idleprocess-zero/watts-vision-homey-app
+
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Features: features.md
+  - Homey Flows: flows.md
+  - Troubleshooting: troubleshooting.md
+  - Privacy: privacy.md
+  - Changelog: changelog.md
