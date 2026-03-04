@@ -5,10 +5,10 @@ Unofficial Homey integration for the **Watts Vision+ heating system**.
 Homey App Store (test channel):
 https://homey.app/a/com.watts.vision/test/
 
-## Wat kan het?
+## Features
 
-- Temperatuur uitlezen
-- Setpoint aanpassen
-- Modus wisselen (Program, Comfort, Eco, Boost, Off/antifreeze)
-- Boost starten/stoppen
-- Homey Flows gebruiken
+- View room temperature
+- Adjust thermostat setpoint
+- Switch heating modes
+- Start Boost mode
+- Use Homey Flows for automation
