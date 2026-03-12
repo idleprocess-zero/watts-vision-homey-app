@@ -1,4 +1,4 @@
-# Watts Vision+ for Homey
+# Watts Vision for Homey - and working on Watts Vision+ support at the moment as well
 
 Control your **Watts Vision+** smart heating system directly from Homey Pro — with real-time temperature readings, full mode control, boost/timer heating, and complete Flow automation support.
 
