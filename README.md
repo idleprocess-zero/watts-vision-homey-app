@@ -124,6 +124,8 @@ MIT
 ---
 
 ## Changelog
+### v1.3.9
+- Fix: Login screen blank on pairing due to custom page. Added first test of the V2 auth, this is early test
 
 ### v1.3.6
 - Fix: Login screen blank on pairing — template key was missing since v1.3.4
