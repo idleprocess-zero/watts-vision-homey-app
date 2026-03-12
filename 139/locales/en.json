@@ -1,0 +1,19 @@
+{
+  "settings": {
+    "poll_interval": "Poll interval (seconds)",
+    "eco_temperature": "Default Eco temperature (°C)",
+    "boost_temperature": "Default Boost temperature (°C)",
+    "boost_temperature_hint": "Temperature used when Boost is selected from the device tile",
+    "boost_duration": "Default Boost duration",
+    "boost_duration_hint": "Duration used when Boost is selected from the device tile"
+  },
+  "pair": {
+    "login_credentials": {
+      "username": "Email address",
+      "password": "Password"
+    }
+  },
+  "error": {
+    "no_devices_found": "No thermostat devices found. Make sure your gateway is online and zones are configured in the Watts Vision+ app."
+  }
+}
